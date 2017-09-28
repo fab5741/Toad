@@ -9,6 +9,6 @@ class AppTest extends TestCase
 {
     public function testRun()
     {
-        $this->assertEquals("HelloWorld", (new App())->run());
+        $this->assertEquals("HelloWorld, ", (new App())->run());
     }
 }

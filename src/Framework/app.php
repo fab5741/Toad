@@ -6,6 +6,6 @@ class App
 {
     public function run()
     {
-        return "HelloWorld";
+        return "HelloWorld, ";
     }
 }
