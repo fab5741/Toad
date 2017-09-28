@@ -1,0 +1,9 @@
+.idea
+/vendor/
+/tmp/
+/code-coverage/
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+/.idea
