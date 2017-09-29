@@ -14,34 +14,34 @@ class AppTest extends TestCase
 
     public function setUp()
     {
-        $this->app = (new App('./config/config.php'))
+        $this->app = (new App(__DIR__ . '/config/config.php'))
             ->pipe(NotFoundMiddleware::class);
     }
 
     public function testAppWithDefinition()
     {
-        $app = (new App('./config/config.php'))
+        $app = (new App('config/config.php'))
             ->pipe(NotFoundMiddleware::class);
         $this->assertInstanceOf(ResponseInterface::class, $app->run(ServerRequest::fromGlobals()));
     }
-
-    public function testAppWithoutDefinition()
-    {
-        $app = (new App('./config/config.php'))
-            ->pipe(NotFoundMiddleware::class);
-        $this->assertInstanceOf(ResponseInterface::class, $app->run(ServerRequest::fromGlobals()));
-    }
-
-    public function testRun()
-    {
-        $this->assertInstanceOf(ResponseInterface::class, $this->app->run(ServerRequest::fromGlobals()));
-    }
-
-    public function testAddModule()
-    {
-        $this->assertInstanceOf(App::class, $this->app->addModule("testModule"));
-        $this->assertEquals($this->app->getModules()[0], "testModule");
-    }
+//
+//    public function testAppWithoutDefinition()
+//    {
+//        $app = (new App())
+//            ->pipe(NotFoundMiddleware::class);
+//        $this->assertInstanceOf(ResponseInterface::class, $app->run(ServerRequest::fromGlobals()));
+//    }
+//
+//    public function testRun()
+//    {
+//        $this->assertInstanceOf(ResponseInterface::class, $this->app->run(ServerRequest::fromGlobals()));
+//    }
+//
+//    public function testAddModule()
+//    {
+//        $this->assertInstanceOf(App::class, $this->app->addModule("testModule"));
+//        $this->assertEquals($this->app->getModules()[0], "testModule");
+//    }
 
 //    TODO : Make this works
 //    public function testProcessNoMiddleWareException()

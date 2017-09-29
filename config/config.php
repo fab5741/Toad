@@ -1,13 +1,20 @@
 <?php
 
+use Framework\Middleware\CsrfMiddleware;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
 use Framework\Router;
 use Framework\Router\RouterFactory;
+use Framework\Session\PHPSession;
+use Framework\Session\SessionInterface;
+use Framework\Twig\CsrfExtension;
+use Framework\Twig\FlashExtension;
+use Framework\Twig\FormExtension;
+use Framework\Twig\PagerFantaExtension;
+use Framework\Twig\RouterTwigExtension;
+use Framework\Twig\TextExtension;
+use Framework\Twig\TimeExtension;
 
-/**
- * Configuration for the application - Overwritten in modules
- */
 return [
     'ENV' => DI\env('ENV', 'production'),
     'database.host' => 'localhost',
@@ -16,7 +23,16 @@ return [
     'database.name' => 'test',
     'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
     'twig.extensions' => [
+        Di\get(RouterTwigExtension::class),
+        Di\get(PagerFantaExtension::class),
+        Di\get(TextExtension::class),
+        Di\get(TimeExtension::class),
+        Di\get(FlashExtension::class),
+        Di\get(FormExtension::class),
+        Di\get(CsrfExtension::class),
     ],
+    SessionInterface::class => DI\Object(PHPSession::class),
+    CsrfMiddleware::class => DI\Object()->constructor(Di\get(SessionInterface::class)),
     Router::class => Di\factory(RouterFactory::class),
     RendererInterface::class => Di\factory(TwigRendererFactory::class),
     PDO::class => function (\Psr\Container\ContainerInterface $c) {

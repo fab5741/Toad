@@ -4,7 +4,7 @@ namespace Tests\Framework\Router;
 
 use DI\ContainerBuilder;
 use Framework\Router;
-use Framework\router\RouterFactory;
+use Framework\Router\RouterFactory;
 use PHPUnit\Framework\TestCase;
 
 class RouterFactoryTest extends TestCase
