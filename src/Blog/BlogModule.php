@@ -8,6 +8,12 @@ use Framework\Renderer\RendererInterface;
 use Framework\Router;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Blog module, Register views and routes for the module
+ *
+ * Class BlogModule
+ * @package App\Blog
+ */
 class BlogModule extends Module
 {
 

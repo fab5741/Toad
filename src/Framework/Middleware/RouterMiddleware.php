@@ -1,10 +1,16 @@
 <?php
 
-namespace Framework\Middlewares;
+namespace Framework\Middleware;
 
 use Framework\Router;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Attach route to request
+ *
+ * Class RouterMiddleware
+ * @package Framework\Middlewares
+ */
 class RouterMiddleware
 {
     /**
@@ -12,6 +18,10 @@ class RouterMiddleware
      */
     private $router;
 
+    /**
+     * RouterMiddleware constructor.
+     * @param Router $router
+     */
     public function __construct(Router $router)
     {
         $this->router = $router;

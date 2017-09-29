@@ -2,13 +2,13 @@
 
 namespace Framework\Router;
 
-/*
+/**
  * Class Route
  *
+ * A route is just a callback assigned by a name, with some parameters
  */
 class Route
 {
-
     /**
      * @var string
      */

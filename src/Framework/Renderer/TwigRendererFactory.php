@@ -5,6 +5,10 @@ namespace Framework\Renderer;
 use Psr\Container\ContainerInterface;
 use Twig\Extension\DebugExtension;
 
+/**
+ * Class TwigRendererFactory
+ * @package Framework\Renderer
+ */
 class TwigRendererFactory
 {
     /**

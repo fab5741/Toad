@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Middlewares;
+namespace Framework\Middleware;
 
 use Exception;
 use Framework\Router\Route;
@@ -9,6 +9,12 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * If a route is attached to the request, call the good callback for it
+ *
+ * Class DispatcherMiddleware
+ * @package Framework\Middlewares
+ */
 class DispatcherMiddleware
 {
     /**
@@ -16,6 +22,10 @@ class DispatcherMiddleware
      */
     private $container;
 
+    /**
+     * DispatcherMiddleware constructor.
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;

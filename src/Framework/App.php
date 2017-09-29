@@ -67,6 +67,12 @@ class App implements DelegateInterface
         return $this;
     }
 
+    /**
+     * Run the app, basically just circle through modules and middlewares
+     *
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     */
     public function run(ServerRequestInterface $request): ResponseInterface
     {
         foreach ($this->modules as $module) {
@@ -99,6 +105,14 @@ class App implements DelegateInterface
         return $this->container;
     }
 
+    /**
+     * Process a middleware to current request and goes to next midlleware
+     * until response is returned or no more middleware is found
+     *
+     * @param ServerRequestInterface $request
+     * @return ResponseInterface
+     * @throws NoMiddleWareException
+     */
     public function process(ServerRequestInterface $request): ResponseInterface
     {
         $middleware = $this->getMiddleware();
@@ -113,6 +127,11 @@ class App implements DelegateInterface
         }
     }
 
+    /**
+     * Return the current middleware
+     *
+     * @return mixed|null
+     */
     private function getMiddleware()
     {
         if (array_key_exists($this->index, $this->middlewares)) {

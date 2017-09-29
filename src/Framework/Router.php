@@ -7,8 +7,17 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\Router\Route as ZendRoute;
 
+/**
+ * Route request to his content - Build on FastRouteRouter
+ * More infos - https://github.com/zendframework/zend-expressive-fastroute
+ *
+ * Class Router
+ */
 class Router
 {
+    /**
+     * @var FastRouteRouter
+     */
     private $router;
 
     /**
@@ -24,7 +33,7 @@ class Router
     }
 
     /**
-     * Curd route generations
+     * CRUD route generations
      *
      * @param string $prefixPath
      * @param $callable
@@ -43,6 +52,8 @@ class Router
     }
 
     /**
+     * Add GET Requests
+     *
      * @param string $path
      * @param string|callable $callable
      * @param string $name
@@ -53,6 +64,8 @@ class Router
     }
 
     /**
+     * Add POST Requests
+     *
      * @param string $path
      * @param string|callable $callable
      * @param string $name
@@ -63,6 +76,8 @@ class Router
     }
 
     /**
+     * Add DELETE Requests
+     *
      * @param string $path
      * @param string|callable $callable
      * @param string $name
@@ -73,10 +88,12 @@ class Router
     }
 
     /**
+     * Find a coressponding route for an incoming Request
+     *
      * @param ServerRequestInterface $request
      * @return Route|null
      */
-    public function match(ServerRequestinterface $request): ?Route
+    public function match(ServerRequestinterface $request):?Route
     {
         $result = $this->router->match($request);
         if ($result->isSuccess() === true) {
@@ -90,7 +107,15 @@ class Router
         }
     }
 
-    public function generateUri(string $name, array $params = [], array $queryParams = []): ? string
+    /**
+     * Generate an uri for a route by its name
+     *
+     * @param string $name
+     * @param array $params
+     * @param array $queryParams
+     * @return null|string
+     */
+    public function generateUri(string $name, array $params = [], array $queryParams = []):?string
     {
         $uri = $this->router->generateUri($name, $params);
         if (!empty($queryParams)) {

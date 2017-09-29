@@ -3,7 +3,7 @@
 namespace Tests\Framework;
 
 use Framework\App;
-use Framework\Middlewares\NotFoundMiddleware;
+use Framework\Middleware\NotFoundMiddleware;
 use GuzzleHttp\Psr7\ServerRequest;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;

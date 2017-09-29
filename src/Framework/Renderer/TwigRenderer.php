@@ -4,6 +4,10 @@ namespace Framework\Renderer;
 
 use Twig_Environment;
 
+/**
+ * Class TwigRenderer
+ * @package Framework\Renderer
+ */
 class TwigRenderer implements RendererInterface
 {
     /**

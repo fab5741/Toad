@@ -5,6 +5,9 @@ use Framework\Renderer\TwigRendererFactory;
 use Framework\Router;
 use Framework\Router\RouterFactory;
 
+/**
+ * Configuration for the application - Overwritten in modules
+ */
 return [
     'ENV' => DI\env('ENV', 'production'),
     'database.host' => 'localhost',

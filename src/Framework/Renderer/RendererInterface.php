@@ -2,6 +2,14 @@
 
 namespace Framework\Renderer;
 
+/**
+ * Describe how renderers should behave
+ *
+ * Before render a view should be added to namespace via addPath
+ *
+ * Interface RendererInterface
+ * @package Framework\Renderer
+ */
 interface RendererInterface
 {
     /**
@@ -14,7 +22,7 @@ interface RendererInterface
     /**
      * Render a view
      * Namespace can be specified via addPath();
-     * $this->reder('@blog/view');
+     * $this->render('@blog/view');
      * @param string $view
      * @param array $params
      * @return string
@@ -22,7 +30,7 @@ interface RendererInterface
     public function render(string $view, array $params = []): string;
 
     /**
-     * Add global ariables to all vues
+     * Add global variables to all vues
      * @param string $key
      * @param mixed $value
      */
