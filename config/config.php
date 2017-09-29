@@ -1,18 +1,9 @@
 <?php
 
-use Framework\Middleware\CsrfMiddleware;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
-use Framework\router\RouterFactory;
-use Framework\Router\RouterTwigExtension;
-use Framework\Session\PHPSession;
-use Framework\Session\SessionInterface;
-use Framework\Twig\CsrfExtension;
-use Framework\Twig\FlashExtension;
-use Framework\Twig\FormExtension;
-use Framework\Twig\PagerFantaExtension;
-use Framework\Twig\TextExtension;
-use Framework\Twig\TimeExtension;
+use Framework\Router;
+use Framework\Router\RouterFactory;
 
 return [
     'ENV' => DI\env('ENV', 'production'),
@@ -21,6 +12,10 @@ return [
     'database.pass' => '',
     'database.name' => 'test',
     'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
+    'twig.extensions' => [
+    ],
+    Router::class => Di\factory(RouterFactory::class),
+    RendererInterface::class => Di\factory(TwigRendererFactory::class),
     PDO::class => function (\Psr\Container\ContainerInterface $c) {
         return new Pdo(
             "mysql:host=" . $c->get('database.host') . ';dbname=' . $c->get('database.name'),
