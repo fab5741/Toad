@@ -12,7 +12,7 @@ namespace Framework;
 abstract class Module
 {
     /**
-     * Path to Config defiitions, see /config/config.php for more infos
+     * Path to Config definitions, see /config/config.php for more infos
      */
     const DEFINITIONS = null;
 

@@ -6,6 +6,7 @@ use Framework\Middleware\MethodMiddleware;
 use Framework\Middleware\NotFoundMiddleware;
 use Framework\Middleware\RouterMiddleware;
 use Framework\Middleware\TrailingSlashMiddleware;
+use Framework\Modules\Contact\ContactModule;
 use Middlewares\Whoops;
 
 chdir(dirname(__DIR__));
@@ -13,6 +14,8 @@ chdir(dirname(__DIR__));
 require './vendor/autoload.php';
 
 $app = (new \Framework\App('./config/config.php'))
+    ->addModule(ContactModule::class)
+//    ->addModule(MyContactModule::class)
     ->pipe(Whoops::class)
     ->pipe(TrailingSlashMiddleware::class)
     ->pipe(MethodMiddleware::class)

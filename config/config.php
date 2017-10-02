@@ -1,5 +1,7 @@
 <?php
 
+use Framework\Mail\MailInterface;
+use Framework\Mail\TestMail;
 use Framework\Middleware\CsrfMiddleware;
 use Framework\Renderer\RendererInterface;
 use Framework\Renderer\TwigRendererFactory;
@@ -32,6 +34,7 @@ return [
         Di\get(CsrfExtension::class),
     ],
     SessionInterface::class => DI\Object(PHPSession::class),
+    MailInterface::class => DI\Object(TestMail::class),
     CsrfMiddleware::class => DI\Object()->constructor(Di\get(SessionInterface::class)),
     Router::class => Di\factory(RouterFactory::class),
     RendererInterface::class => Di\factory(TwigRendererFactory::class),

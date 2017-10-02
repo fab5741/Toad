@@ -37,13 +37,16 @@ class FormExtension extends \Twig_Extension
             'name' => $key,
             'id' => $key,
         ];
+        if (!empty($options['containerClass'])) {
+            $class .= " " . $options['containerClass'];
+        }
         $value = $this->convertValue($value);
         if ($error) {
             $class .= " has-danger";
             $attributes['class'] .= ' form-control-danger';
         }
         if ($type == 'textarea') {
-            $input = $this->textarea($value, $attributes);
+            $input = $this->textarea($value, $attributes, (int)$options['rows'] ?? null, (int)$options['cols'] ?? null);
         } elseif ($type === "file") {
             $input = $this->file($attributes);
         } elseif (array_key_exists('options', $options)) {
@@ -53,7 +56,7 @@ class FormExtension extends \Twig_Extension
         }
 
         return "<div class=\"{$class}\">
-                <label for=\"name\">{$label}</label>
+                <label class=\"form-control-label\" for=\"name\">{$label}</label>
                 {$input}
                 {$error}
             </div>";
@@ -82,14 +85,19 @@ class FormExtension extends \Twig_Extension
         }
     }
 
+
     /**
      * @param null|string $value
      * @param array $attributes
+     * @param int $rows
+     * @param int|null $cols
      * @return string
      */
-    private function textarea(?string $value, array $attributes): string
+    private function textarea(string $value, array $attributes, int $rows = null, int $cols = null): string
     {
-        return "<textarea " . $this->getHtmlFromArray($attributes) . ">{$value}</textarea>";
+        $rows = "rows=" . $rows ?? "rows={$rows}";
+        $cols = "cols=" . $cols ?? "rows={$cols}";
+        return "<textarea " . $this->getHtmlFromArray($attributes) . " " . $rows . " " . $cols . ">{$value}</textarea>";
     }
 
     /**
