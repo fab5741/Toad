@@ -1,7 +1,5 @@
 <?php
 
-use App\Admin\AdminModule;
-use App\Blog\BlogModule;
 use Framework\Middleware\CsrfMiddleware;
 use Framework\Middleware\DispatcherMiddleware;
 use Framework\Middleware\MethodMiddleware;
@@ -15,8 +13,6 @@ chdir(dirname(__DIR__));
 require './vendor/autoload.php';
 
 $app = (new \Framework\App('./config/config.php'))
-    ->addModule(AdminModule::class)
-    ->addModule(BlogModule::class)
     ->pipe(Whoops::class)
     ->pipe(TrailingSlashMiddleware::class)
     ->pipe(MethodMiddleware::class)
