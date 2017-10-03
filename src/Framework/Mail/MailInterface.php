@@ -38,7 +38,7 @@ interface MailInterface
      * @param null|string $name
      * @return MailInterface
      */
-    public function setFrom(string $email, ? string $name): MailInterface;
+    public function setFrom(string $email, ? string $name): self;
 
     /**
      * Add adresse to recipient list
@@ -47,7 +47,7 @@ interface MailInterface
      * @param null|string $name
      * @return MailInterface
      */
-    public function addAddress(string $email, ? string $name): MailInterface;
+    public function addAddress(string $email, ? string $name): self;
 
     /**
      * Add adresse to reply to list
@@ -56,7 +56,7 @@ interface MailInterface
      * @param null|string $name
      * @return MailInterface
      */
-    public function addReplyTo(string $email, ? string $name): MailInterface;
+    public function addReplyTo(string $email, ? string $name): self;
 
     /**
      * Add CCC
@@ -64,7 +64,7 @@ interface MailInterface
      * @param string $email
      * @return MailInterface
      */
-    public function addCCC(string $email): MailInterface;
+    public function addCCC(string $email): self;
 
     /**
      * Add BCC
@@ -72,7 +72,7 @@ interface MailInterface
      * @param string $email
      * @return MailInterface
      */
-    public function addBCC(string $email): MailInterface;
+    public function addBCC(string $email): self;
 
     /**
      * Attachments
@@ -85,7 +85,7 @@ interface MailInterface
      * @param null|string $name
      * @return MailInterface
      */
-    public function addAttachment(string $path, ? string $name = ""): MailInterface;
+    public function addAttachment(string $path, ? string $name = ""): self;
 
     /**
      * Content
@@ -98,7 +98,7 @@ interface MailInterface
      * @param bool $isHTML
      * @return MailInterface
      */
-    public function isHTML(bool $isHTML): MailInterface;
+    public function isHTML(bool $isHTML): self;
 
     /**
      * Set is mail should return html, or not
@@ -106,7 +106,7 @@ interface MailInterface
      * @param string $subject
      * @return MailInterface
      */
-    public function subject(string $subject): MailInterface;
+    public function subject(string $subject): self;
 
     /**
      * Set is mail should return html, or not
@@ -114,14 +114,14 @@ interface MailInterface
      * @param string $body
      * @return MailInterface
      */
-    public function body(string $body): MailInterface;
+    public function body(string $body): self;
 
     /**
      * Set is mail should return html, or not
      * @param string $altBody
      * @return MailInterface
      */
-    public function altBody(string $altBody): MailInterface;
+    public function altBody(string $altBody): self;
 
     /**
      * Finally send your email

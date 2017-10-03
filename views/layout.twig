@@ -11,8 +11,22 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-<br>
-{% block body %} {% endblock %}
+
+<div class="container">
+    {% if flash('success') %}
+        <div class="alert alert-success">
+            {{ flash('success') }}
+        </div>
+    {% endif %}
+
+    {% if flash('error') %}
+        <div class="alert alert-danger">
+            {{ flash('error') }}
+        </div>
+    {% endif %}
+    {% block body %} {% endblock %}
+</div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

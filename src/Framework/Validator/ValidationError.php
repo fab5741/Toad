@@ -17,17 +17,18 @@ class ValidationError
      * @var array
      */
     private $messages = [
-        'required' => 'Le champs %s est requis',
-        'empty' => 'Le champs %s ne peux être vide',
-        'slug' => 'Le champs %s n\'est pas un slug valide',
-        'minLength' => 'Le champs %s doit contenir plus de %d caractères',
-        'maxLength' => 'Le champs %s doit contenir moins de %d caractères',
-        'betweenLength' => 'Le champs %s doit contenir entre %d et %d caractères',
-        'dateTime' => 'Le champs %s doit être une date valide',
-        'exists' => 'Le champs %s n\'existe pas dans la table %S',
-        'unique' => 'Le champs %s doit être unique',
-        'filetype' => 'Le champs %s n\'est pas au format valide (%s)',
-        'uploaded' => 'Vous devez uploader un fichier',
+        'required' => 'Field %s is required',
+        'empty' => 'Field %s can\'t be empty',
+        'slug' => 'Field %s is not a valid slug',
+        'minLength' => 'Field %s should be longer than %d caracteres',
+        'maxLength' => 'Field %s have to be shorter than %d caracteres',
+        'betweenLength' => 'Field %s need to be in range length %d et %d',
+        'dateTime' => 'Field %s is not valid date',
+        'exists' => 'Field %s does not exist in table %S',
+        'unique' => 'Field %s need to be unique',
+        'filetype' => 'Field %s is not format : (%s)',
+        'uploaded' => 'File Upload is required',
+        'email' => '%s is not a valid email',
     ];
     /**
      * @var array

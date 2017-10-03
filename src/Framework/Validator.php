@@ -219,4 +219,13 @@ class Validator
         }
         return $this;
     }
+
+    public function email(string $key): self
+    {
+        $email = $this->getValue($key);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->addError($key, 'email');
+        }
+        return $this;
+    }
 }
