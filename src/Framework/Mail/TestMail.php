@@ -44,14 +44,9 @@ class TestMail implements MailInterface
     private $SMTPSecure;
 
     /**
-     * @var string
+     * @var [string, ? string]
      */
-    private $fromEmail;
-
-    /**
-     * @var ? string
-     */
-    private $fromName;
+    private $from;
 
     /**
      * @var [string, string]
@@ -88,9 +83,27 @@ class TestMail implements MailInterface
      */
     private $body;
 
+    /**
+     * @var string
+     */
+    private $path;
+
+    /**
+     * @var string
+     */
+    private $subject;
+
+    /**
+     * @var string
+     */
+    private $altBody;
+
+
+
     public function __construct()
     {
         $this->config();
+        $this->path = dirname(__DIR__, 3) . "/Logs/Mail/";
     }
 
     /**
@@ -126,8 +139,8 @@ class TestMail implements MailInterface
      */
     public function setFrom(string $email, ? string $name): MailInterface
     {
-        $this->fromEmail = $email;
-        $this->fromName = $email;
+        $this->from = [$email, $name];
+        return $this;
     }
 
     /**
@@ -143,6 +156,7 @@ class TestMail implements MailInterface
             $email,
             $name
         ];
+        return $this;
     }
 
     /**
@@ -158,6 +172,7 @@ class TestMail implements MailInterface
             $email,
             $name
         ];
+        return $this;
     }
 
     /**
@@ -171,6 +186,7 @@ class TestMail implements MailInterface
         $this->CCC[] = [
             $email
         ];
+        return $this;
     }
 
     /**
@@ -184,6 +200,7 @@ class TestMail implements MailInterface
         $this->BCC[] = [
             $email
         ];
+        return $this;
     }
 
     /**
@@ -199,53 +216,95 @@ class TestMail implements MailInterface
             $path,
             $name
         ];
+        return $this;
     }
 
     /**
-     * Set is mail should return html, or not
-     *
      * @param bool $isHTML
      * @return MailInterface
      */
     public function isHTML(bool $isHTML): MailInterface
     {
         $this->isHTML = $isHTML;
+        return $this;
     }
 
     /**
-     * Set is mail should return html, or not
-     *
      * @param string $subject
      * @return MailInterface
      */
     public function subject(string $subject): MailInterface
     {
         $this->subject = $subject;
+        return $this;
     }
 
     /**
-     * Set is mail should return html, or not
-     *
      * @param string $body
      * @return MailInterface
      */
     public function body(string $body): MailInterface
     {
         $this->body = $body;
+        return $this;
     }
 
     /**
-     * Set is mail should return html, or not
      * @param string $altBody
      * @return MailInterface
      */
     public function altBody(string $altBody): MailInterface
     {
-        $this->body = $altBody;
+        $this->altBody = $altBody;
+        return $this;
     }
 
     public function send()
     {
+        $path = $this->path;
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        file_put_contents($path . time(), $this->__toString());
+        return $this;
+    }
 
+    public function __toString()
+    {
+        $string = "";
+
+        $string .= "------------Config----------------\n";
+        $string .= "host : " . $this->host . "\n";
+        $string .= "port : " . $this->port . "\n";
+        $string .= "debug : " . $this->isDebug . "\n";
+        $string .= "SMTP : " . $this->isSMTP . "\n";
+        $string .= "SMTP Auth : " . $this->isSMTPAuth . "\n";
+        $string .= "username : " . $this->username . "\n";
+        $string .= "password : " . $this->password . "\n";
+        $string .= "SMTP secure : " . $this->SMTPSecure . "\n\n";
+
+        $string .= "------------Mail----------------\n";
+
+        $string .= "from : " . $this->from[0] . " " . $this->from[1] . " \n";
+
+
+        $string .= "recipients : \n";
+
+        foreach ($this->recipients as $recipient) {
+            $string .= $recipient[0] . " " . $recipient[1] . " \n";
+        }
+
+        $string .= "reply to : " . $this->replyTo[0] . " " . $this->replyTo[1] . " \n";
+
+
+        $string .= "subject : " . $this->subject . "\n\n";
+        if ($this->isHTML) {
+            $string .= "body (HTML) : \n" . $this->body . "\n\n";
+        } else {
+            $string .= "body : \n" . $this->body . "\n\n";
+        }
+        $string .= "altBody : " . $this->altBody . "\n\n";
+
+        return $string;
     }
 }

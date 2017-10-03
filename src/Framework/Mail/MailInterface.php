@@ -122,4 +122,10 @@ interface MailInterface
      * @return MailInterface
      */
     public function altBody(string $altBody): MailInterface;
+
+    /**
+     * Finally send your email
+     * @return mixed
+     */
+    public function send();
 }

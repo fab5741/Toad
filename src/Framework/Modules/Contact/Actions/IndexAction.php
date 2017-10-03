@@ -8,6 +8,7 @@ use Framework\Actions\RouterAwareAction;
 use Framework\Mail\MailInterface;
 use Framework\Renderer\RendererInterface;
 use Framework\Validator;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 class IndexAction
@@ -20,30 +21,43 @@ class IndexAction
      * @var MailInterface
      */
     private $mail;
+    /**
+     * @var ContainerInterface
+     */
+    private $container;
 
     use RouterAwareAction;
 
     /**
      * IndexAction constructor.
+     * @param ContainerInterface $container
      * @param RendererInterface $renderer
      * @param MailInterface $mail
      */
-    public function __construct(RendererInterface $renderer, MailInterface $mail)
+    public function __construct(ContainerInterface $container, RendererInterface $renderer, MailInterface $mail)
     {
-
+        $this->container = $container;
         $this->renderer = $renderer;
         $this->mail = $mail;
     }
 
     public function __invoke(Request $request)
     {
-        // test mail
-        var_dump($this->mail);
-        exit(0);
         if ($request->getMethod() === "POST") {
             $validator = $this->getValidator($request);
             if ($validator->isValid()) {
-                //TODO : send an email
+                $this->mail->config("localhost", 25, true, true, true, "root", "", "tls");
+
+                $this->mail->setFrom($this->container->get("from"), "test");
+                $this->mail->addAddress($this->container->get("to"), "test");
+
+                $body = "Name : " . $request->getParsedBody()['name'] . "\n";
+                $body .= "Email : " . $request->getParsedBody()['email'] . "\n";
+                $body .= "Message : " . $request->getParsedBody()['message'] . "\n";
+
+                $this->mail->body($body);
+
+                $this->mail->send();
                 var_dump("ok");
                 exit(0);
                 //TODO :  flash success message
