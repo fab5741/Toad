@@ -15,10 +15,8 @@ chdir(dirname(__DIR__));
 require './vendor/autoload.php';
 
 $app = (new \Framework\App('./config/config.php'))
-//    ->addModule(::class)
     ->addModule(HomeModule::class)
     ->addModule(ContactModule::class)
-//    ->addModule(MyContactModule::class)
     ->pipe(Whoops::class)
     ->pipe(TrailingSlashMiddleware::class)
     ->pipe(MethodMiddleware::class)

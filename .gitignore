@@ -9,6 +9,5 @@ Thumbs.db
 /.idea
 /src/App/
 /Logs/
-public/css
 public/images
-public/js
+public/dist
