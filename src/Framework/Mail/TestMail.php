@@ -2,7 +2,6 @@
 
 namespace Framework\Mail;
 
-
 /**
  * Class TestMail - Return mails to logs for test purpose
  * @package Framework\Mail

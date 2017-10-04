@@ -38,10 +38,12 @@ class IndexAction
      * @param MailInterface $mail
      * @param FlashService $flash
      */
-    public function __construct(ContainerInterface $container,
-                                RendererInterface $renderer,
-                                MailInterface $mail,
-                                FlashService $flash)
+    public function __construct(
+        ContainerInterface $container,
+        RendererInterface $renderer,
+        MailInterface $mail,
+        FlashService $flash
+    )
     {
         $this->container = $container;
         $this->renderer = $renderer;
@@ -89,5 +91,4 @@ class IndexAction
             ->email('email');
         return $validator;
     }
-
 }

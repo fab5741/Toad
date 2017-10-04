@@ -140,4 +140,13 @@ class PhpMail implements MailInterface
     {
         // TODO: Implement altBody() method.
     }
+
+    /**
+     * Finally send your email
+     * @return mixed
+     */
+    public function send()
+    {
+        // TODO: Implement send() method.
+    }
 }

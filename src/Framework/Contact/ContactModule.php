@@ -27,4 +27,3 @@ class ContactModule extends Module
         $router->get($prefix, ContactAction::class, 'contact.index');
     }
 }
-

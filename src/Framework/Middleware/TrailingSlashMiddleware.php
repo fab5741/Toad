@@ -3,14 +3,15 @@
 namespace Framework\Middleware;
 
 use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ServerRequestInterface;
 
 class TrailingSlashMiddleware
 {
-    public function __invoke(\Psr\Http\Message\ServerRequestInterface $request, callable $next)
+    public function __invoke(ServerRequestInterface $request, callable $next)
     {
         $uri = $request->getUri()->getPath();
 
-        if (!empty($uri) && $uri[-1] === "/") {
+        if (!empty($uri) && $uri[-1] === "/" and $uri != "/") {
             return (new Response())
                 ->withStatus("301")
                 ->withHeader("Location", substr($uri, 0, -1));

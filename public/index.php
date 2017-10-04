@@ -1,5 +1,6 @@
 <?php
 
+use App\Modules\Home\HomeModule;
 use Framework\Middleware\CsrfMiddleware;
 use Framework\Middleware\DispatcherMiddleware;
 use Framework\Middleware\MethodMiddleware;
@@ -14,6 +15,8 @@ chdir(dirname(__DIR__));
 require './vendor/autoload.php';
 
 $app = (new \Framework\App('./config/config.php'))
+//    ->addModule(::class)
+    ->addModule(HomeModule::class)
     ->addModule(ContactModule::class)
 //    ->addModule(MyContactModule::class)
     ->pipe(Whoops::class)

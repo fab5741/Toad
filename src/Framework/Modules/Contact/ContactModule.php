@@ -2,7 +2,6 @@
 
 namespace Framework\Modules\Contact;
 
-
 use Framework\Module;
 use Framework\Modules\Contact\Actions\IndexAction;
 use Framework\Renderer\RendererInterface;
