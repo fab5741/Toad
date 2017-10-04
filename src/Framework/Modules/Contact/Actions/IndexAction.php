@@ -77,8 +77,8 @@ class IndexAction
             $email = $request->getParsedBody()['email'];
             $message = $request->getParsedBody()['message'];
         }
-
-        return $this->renderer->render('@contact/index', compact("name", "email", "message", "errors"));
+        $module = "contact";
+        return $this->renderer->render('@contact/index', compact("module", "name", "email", "message", "errors"));
     }
 
     protected function getValidator(Request $request)

@@ -2,6 +2,8 @@
 
 namespace Framework\Middleware;
 
+use Framework\Modules\Contact\Actions\NotFoundAction;
+use Framework\Renderer\RendererInterface;
 use Framework\Router;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -17,14 +19,20 @@ class RouterMiddleware
      * @var Router
      */
     private $router;
+    /**
+     * @var RendererInterface
+     */
+    private $renderer;
 
     /**
      * RouterMiddleware constructor.
      * @param Router $router
+     * @param RendererInterface $renderer
      */
-    public function __construct(Router $router)
+    public function __construct(Router $router, RendererInterface $renderer)
     {
         $this->router = $router;
+        $this->renderer = $renderer;
     }
 
     public function __invoke(ServerRequestInterface $request, callable $next)

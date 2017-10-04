@@ -2,6 +2,7 @@
 
 namespace Framework\Renderer;
 
+use Framework\App;
 use Twig_Environment;
 
 /**
@@ -18,6 +19,7 @@ class TwigRenderer implements RendererInterface
     /**
      * TwigRenderer constructor.
      * @param Twig_Environment $twig
+     * @param App $app
      */
     public function __construct(Twig_Environment $twig)
     {
@@ -37,7 +39,7 @@ class TwigRenderer implements RendererInterface
     /**
      * Render a view
      * Namespace can be specified via addPath();
-     * $this->reder('@blog/view');
+     * $this->render('@blog/view');
      * @param string $view
      * @param array $params
      * @return string

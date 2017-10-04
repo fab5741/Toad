@@ -1,5 +1,6 @@
-$red: blue;
+@import "~bootstrap/scss/bootstrap.scss";
+
 body {
-    background: $red;
-    transform: translateX(0px);
+    background: #176977;
+    margin-top: 95px;
 }

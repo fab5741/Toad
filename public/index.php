@@ -2,6 +2,7 @@
 
 use App\Modules\Home\HomeModule;
 use Framework\Middleware\CsrfMiddleware;
+use Framework\Middleware\CustomNotFoundPage;
 use Framework\Middleware\DispatcherMiddleware;
 use Framework\Middleware\MethodMiddleware;
 use Framework\Middleware\NotFoundMiddleware;

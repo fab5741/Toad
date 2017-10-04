@@ -26,6 +26,8 @@ let cssLoaders = [{
 let config = {
     entry: {
         app: ['./assets/css/app.scss', './assets/js/app.js',],
+        contact: ['./src/Framework/Modules/Contact/assets/css/contact.scss', './src/Framework/Modules/Contact/assets/js/contact.js',],
+        404: ['./assets/css/404.css'],
     },
     watch: dev,
     output: {
