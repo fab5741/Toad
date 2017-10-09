@@ -12,7 +12,6 @@ use Framework\Session\SessionInterface;
 use Framework\Twig\CsrfExtension;
 use Framework\Twig\FlashExtension;
 use Framework\Twig\FormExtension;
-use Framework\Twig\MenuTwigExtension;
 use Framework\Twig\PagerFantaExtension;
 use Framework\Twig\RouterTwigExtension;
 use Framework\Twig\TextExtension;
@@ -33,7 +32,6 @@ return [
         Di\get(FlashExtension::class),
         Di\get(FormExtension::class),
         Di\get(CsrfExtension::class),
-        Di\get(MenuTwigExtension::class),
     ],
     SessionInterface::class => DI\Object(PHPSession::class),
     MailInterface::class => DI\Object(TestMail::class),

@@ -2,7 +2,6 @@
 
 use App\Modules\Home\HomeModule;
 use Framework\Middleware\CsrfMiddleware;
-use Framework\Middleware\CustomNotFoundPage;
 use Framework\Middleware\DispatcherMiddleware;
 use Framework\Middleware\MethodMiddleware;
 use Framework\Middleware\NotFoundMiddleware;
@@ -15,7 +14,7 @@ chdir(dirname(__DIR__));
 
 require './vendor/autoload.php';
 
-$app = (new \Framework\App('./config/config.php'))
+$app = (new Framework\App('./config/config.php'))
     ->addModule(HomeModule::class)
     ->addModule(ContactModule::class)
     ->pipe(Whoops::class)
