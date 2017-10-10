@@ -23,7 +23,7 @@ return [
     'database.user' => 'root',
     'database.pass' => '',
     'database.name' => 'test',
-    'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/views',
+    'views.path' => dirname(__DIR__) . DIRECTORY_SEPARATOR . '/ressources/views',
     'twig.extensions' => [
         Di\get(RouterTwigExtension::class),
         Di\get(PagerFantaExtension::class),

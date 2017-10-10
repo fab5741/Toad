@@ -25,8 +25,8 @@ let cssLoaders = [{
 
 let config = {
     entry: {
-        app: ['./assets/css/app.scss', './assets/js/app.js',],
-        404: ['./assets/css/404.css'],
+        app: ['./ressources/assets/css/app.scss', './ressources/assets/js/app.js',],
+        404: ['./ressources/assets/css/404.css'],
     },
     watch: dev,
     output: {
