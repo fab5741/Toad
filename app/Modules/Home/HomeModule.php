@@ -14,10 +14,11 @@ class HomeModule extends Module
 {
     const DEFINITIONS = __DIR__ . "/config.php";
 
-    public function __construct(RendererInterface $renderer,
-                                ContainerInterface $container,
-                                MenuTwigExtension $menuTwigExtension)
-    {
+    public function __construct(
+        RendererInterface $renderer,
+        ContainerInterface $container,
+        MenuTwigExtension $menuTwigExtension
+    ) {
         $container->get(RendererInterface::class)->addPath('home', __DIR__ . '/views');
         $router = $container->get(Router::class);
         $prefix = $container->get('home.prefix');

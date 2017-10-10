@@ -28,8 +28,7 @@ class IndexAction
     public function __construct(
         ContainerInterface $container,
         RendererInterface $renderer
-    )
-    {
+    ) {
         $this->container = $container;
         $this->renderer = $renderer;
     }
