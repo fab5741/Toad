@@ -1,3 +1,3 @@
 import 'bootstrap'
 
-console.log('salut')
+console.log('salueet')

@@ -20,13 +20,8 @@
             "email": "contact@fabrice-palermo.fr"
         }
     ],
-    "autoload": {
-        "psr-4": {
-            "App\\": "src",
-            "Tests\\": "tests"
-        }
-    },
     "require": {
+        "php": ">=7.1.0",
         "fab5741/toad-core": "dev-master"
     },
     "require-dev": {
@@ -35,8 +30,15 @@
         "robmorgan/phinx": "^0.9.1",
         "fzaninotto/faker": "^1.7"
     },
-    "config": {
-        "sort-packages": true
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -44,7 +46,13 @@
         "cs-check": "phpcs --colors",
         "cs-fix": "phpcbf --colors",
         "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
-        "upload-coverage": "coveralls -v"
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
     }
 }
